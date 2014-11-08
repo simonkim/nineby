@@ -1,0 +1,55 @@
+<head>
+  <title>nineby</title>
+</head>
+
+<body>
+  <div id="outer">
+    
+    <div id="quiz">
+    {{> quiz }}
+    </div>
+
+    <div id="numpad">
+    {{> numpad}}
+    </div>
+
+    <div id="answerPad">
+    {{> answerPad}}
+    </div>
+    
+    
+  </div>
+</body>
+
+<template name="quiz">
+  <div>
+  <h1> {{op1}} x {{op2}} = ? </h1>
+  </div>
+</template>
+
+<template name="numbtn">
+    <button type="button" class="btn btn-default btn-large"> {{this.number}} </button>
+</template>
+<template name="numpad">
+  {{#each numbers}}
+    {{> numbtn}}
+  {{/each}}
+    <button type="button" class="btn btn-danger btn-large clear"> Clear </button>
+</template>
+
+<template name="answerPad">
+  <h3> Answer is </h3>
+  <label> {{answerValue}} </label>
+  
+  {{#if isCorrect}}
+    <div id="next">
+    <label> correct! </label>  
+    <button type="btn" class="btn btn-primary btn-large next"> Next </button>
+    </div>
+  
+  {{/if}}
+  
+</template>
+
+
+
