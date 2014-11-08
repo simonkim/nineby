@@ -1,54 +1,74 @@
 <head>
-  <title>nineby</title>
+    <title>9x</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 
 <body>
-  <div id="outer">
-    
-    <div id="quiz">
+  <div id="outer" class="container-fluid">
+
     {{> quiz }}
+
+    <div id="evaluationBar">
+      {{> evaluationBar}}
     </div>
 
     <div id="numpad">
-    {{> numpad}}
+      {{> numpad}}
     </div>
 
-    <div id="answerPad">
-    {{> answerPad}}
-    </div>
-    
-    
+      <div class="well well-lg"> 9x: You know what to do. </div>
+      <address> Find source code at <a href="https://github.com/simonkim/nineby"> GitHub </a></address>
   </div>
 </body>
 
 <template name="quiz">
-  <div>
-  <h1> {{op1}} x {{op2}} = ? </h1>
-  </div>
+    <div class="page-header">
+        <h1> {{op1}} x {{op2}} = {{answerValue}} </h1>
+    </div>
 </template>
 
 <template name="numbtn">
-    <button type="button" class="btn btn-default btn-large"> {{this.number}} </button>
-</template>
-<template name="numpad">
-  {{#each numbers}}
-    {{> numbtn}}
-  {{/each}}
-    <button type="button" class="btn btn-danger btn-large clear"> Clear </button>
+    <button type="button" class="btn btn-default btn-large btn-block"> {{number}} </button>
 </template>
 
-<template name="answerPad">
-  <h3> Answer is </h3>
-  <label> {{answerValue}} </label>
-  
-  {{#if isCorrect}}
-    <div id="next">
-    <label> correct! </label>  
-    <button type="btn" class="btn btn-primary btn-large next"> Next </button>
+<template name="numpad">
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+            <table class="table">
+                <tr>
+                    <td> {{> numbtn number=1 }} </td>
+                    <td> {{> numbtn number=2 }} </td>
+                    <td> {{> numbtn number=3 }} </td>
+                </tr>
+                <tr>
+                    <td> {{> numbtn number=4 }} </td>
+                    <td> {{> numbtn number=5 }} </td>
+                    <td> {{> numbtn number=6 }} </td>
+                </tr>
+                <tr>
+                    <td> {{> numbtn number=7 }} </td>
+                    <td> {{> numbtn number=8 }} </td>
+                    <td> {{> numbtn number=9 }} </td>
+                </tr>
+                <tr>
+                    <td>{{> numbtn number=0 }}</td>
+                    <td><button type="button" class="btn btn-danger btn-large clear btn-block"> <span class="glyphicon glyphicon-remove"></span> </button></td>
+                    <td><button type="button" class="btn btn-success btn-large hint btn-block"> <span class="glyphicon glyphicon-exclamation-sign"></span> </button></td>
+                </tr>
+            </table>
+        </div>
     </div>
-  
+</template>
+
+<template name="evaluationBar">
+
+  {{#if isCorrect}}
+      <div class="alert alert-success alert-dismissible" role="alert">
+          <span class="glyphicon glyphicon-ok"></span> <strong>Good job!</strong> Try another.
+          <button type="btn" class="btn btn-primary next"> Next <span class="glyphicon glyphicon-hand-right"></span> </button>
+      </div>
   {{/if}}
-  
+
 </template>
 
 
